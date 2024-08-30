@@ -94,15 +94,15 @@ linear_con <- function(x0) {
 
 
 ######################################################################3
-#' time function
+#' stime function
 #'
 #' This function is used to generate a time of the system to be used for generating time dependent random numbers   precise upto micro-seconds
 #'
 #' @return t fractional value of the time
 #' @export
 #'
-#' @examples time()
-time<-function()
+#' @examples stime()
+stime<-function()
 {
   time_with_fractional_seconds <- format(Sys.time(), "%OS6")
   
@@ -141,23 +141,23 @@ time<-function()
 #' @return gives a vector  of pseudo random numbers generated of desired length
 #'
 #' @export
-#' @examples   runf(10)
-#' runf(10,Time=TRUE)
-#' runf(10,Time=TRUE)
-#' runf(10,Time=TRUE)
-#' runf(10,2)
-#' runf(10,Time=TRUE,2)
-#' runf(10,Time=TRUE,2)
+#' @examples   prunf(10)
+#' prunf(10,Time=TRUE)
+#' prunf(10,Time=TRUE)
+#' prunf(10,Time=TRUE)
+#' prunf(10,2)
+#' prunf(10,Time=TRUE,2)
+#' prunf(10,Time=TRUE,2)
 #'
-#' runf(10,5,0.52)
-#'  runf(15,2,0.352)
+#' prunf(10,5,0.52)
+#'  prunf(15,2,0.352)
 #'
-#'   runf(10,2,0.652,0.235)
-#'    runf(10,Time=TRUE,2,0.652,0.235)
-#'   runf(9,7,0.52,0.4235,0.389)
-#'   runf(10,Time=TRUE,2,0.752,0.235,0.351,3.8)
+#'   prunf(10,2,0.652,0.235)
+#'    prunf(10,Time=TRUE,2,0.652,0.235)
+#'   prunf(9,7,0.52,0.4235,0.389)
+#'   prunf(10,Time=TRUE,2,0.752,0.235,0.351,3.8)
 
-runf <- function(N = 100, Time = TRUE, n0 = 5, x00 = 0.5362, x01 = 0.357, x02 = 0.235, a1 = 3.69, a2 = 0.7) {
+prunf <- function(N = 100, Time = TRUE, n0 = 5, x00 = 0.5362, x01 = 0.357, x02 = 0.235, a1 = 3.69, a2 = 0.7) {
   
   if (!is.numeric(N) || N <= 0) {
     stop("N must be a positive integer")
@@ -187,7 +187,7 @@ runf <- function(N = 100, Time = TRUE, n0 = 5, x00 = 0.5362, x01 = 0.357, x02 = 
     x010 <- x01
     x020 <- x02
   } else {
-    t = time()
+    t = stime()
     x000 <- (x00 + t) %% 1
     x010 <- (x01 + t) %% 1
     x020 <- (x02 + t) %% 1
@@ -241,13 +241,13 @@ runf <- function(N = 100, Time = TRUE, n0 = 5, x00 = 0.5362, x01 = 0.357, x02 = 
 #' @return a list of pseudo random numbers from normal distribution
 #' @export
 #'
-#' @examples rnorm(10)
-#'  rnorm(100)
+#' @examples prnorm(10)
+#'  prnorm(100)
 #'
-rnorm<- function(n)
+prnorm<- function(n)
 {
-  u1=runf(n)
-  u2=runf(n)
+  u1=prunf(n)
+  u2=prunf(n)
   return(sqrt(-2*log(u1))*cos(2*pi*u2))
 }
 
@@ -266,15 +266,15 @@ rnorm<- function(n)
 #' @return returns a vector of random bits of length n
 #' @export
 #'
-#' @examples rbits(2)
-#' rbits(2)
-#' rbits(2,Time=FALSE)
-#' rbits(2,Time=FALSE)
-#'  rbits(10)
+#' @examples prbits(2)
+#' prbits(2)
+#' prbits(2,Time=FALSE)
+#' prbits(2,Time=FALSE)
+#'  prbits(10)
 #'
-rbits<-function(n,Time=TRUE)
+prbits<-function(n,Time=TRUE)
 {
-  a=runf(n,Time)
+  a=prunf(n,Time)
   
   b=rep(0,length(a))
   
@@ -297,13 +297,13 @@ rbits<-function(n,Time=TRUE)
 #' @return  a vector of n numbers from exponential distribution
 #' @export
 #'
-#' @examples  rexp(10)
-#'    rexp(10)
-#'    rexp(10,FALSE)
-#'    rexp(10,FALSE)
-rexp<-function(n,Time=TRUE)
+#' @examples  prexp(10)
+#'    prexp(10)
+#'    prexp(10,FALSE)
+#'    prexp(10,FALSE)
+prexp<-function(n,Time=TRUE)
 {
-  return(-log(1-runf(n,Time),base = exp(1))/5)
+  return(-log(1-prunf(n,Time),base = exp(1))/5)
 }
 
 
@@ -322,13 +322,13 @@ rexp<-function(n,Time=TRUE)
 #' @export
 #'
 #' @examples
-#' rcauchy(10)
-#' rcauchy(10,Time=TRUE)
-#' rcauchy(10,Time=TRUE)
-rcauchy<-function(n,Time=TRUE)
+#' prcauchy(10)
+#' prcauchy(10,Time=TRUE)
+#' prcauchy(10,Time=TRUE)
+prcauchy<-function(n,Time=TRUE)
 {
   
-  return(tan(pi*(runf(n,Time)-0.5)))
+  return(tan(pi*(prunf(n,Time)-0.5)))
 }
 
 
