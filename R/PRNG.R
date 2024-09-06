@@ -199,8 +199,8 @@ prunf <- function(N = 100, Time = TRUE, n0 = 5, x00 = 0.5362, x01 = 0.357, x02 =
   output <- c()
   
   for (j in 1:N) {
-    a10 <- a10 + 1 / sqrt(N)
-    a20 <- a20 + 1 / sqrt(N)
+    a10 <- a10 + 1 / sqrt(j)
+    a20 <- a20 + 1 / sqrt(j)
     
     n <- linear_con(n00)
     n1 <- n %% 3
