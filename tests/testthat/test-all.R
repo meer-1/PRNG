@@ -59,7 +59,7 @@ run_normality_tests <- function() {
   ks_p <- ks.test(normal_numbers, "pnorm", mean(normal_numbers), sd(normal_numbers))$p.value  # KS test
   
   # All p-values should be greater than 0.05 for the sample to be considered normally distributed
-  all(c(shapiro_p, ad_p, ks_p) > 0.01)
+  all(c(shapiro_p, ad_p, ks_p) > 0.05)
 }
 
 test_that("Distribution Test - Normal", {
@@ -67,6 +67,6 @@ test_that("Distribution Test - Normal", {
   results <- replicate(100, run_normality_tests())
   
   # Check if a reasonable proportion of results are TRUE
-  expect_true(mean(results) > 0.6, 
+  expect_true(mean(results) > 0.8, 
               "Generated numbers do not follow a normal distribution in the majority of tests")
 })

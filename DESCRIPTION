@@ -1,6 +1,6 @@
 Package: PRNG
 Title: A Pseudo-Random Number Generator
-Version:0.0.2.1.2
+Version:0.0.2.1.3
 Authors@R:c(
            person("Sajad Ahmad", "Mir", email = "maths.acad24@gmail.com", role = c("aut", "cre"), comment = c(ORCID = "https://orcid.org/0009-0009-6422-1893")),
            person("Dr. Puneet", "Sharma", email = "puneet@iitj.ac.in", role = c("aut"), comment = c(ORCID = "https://orcid.org/0000-0001-7839-0051"))
